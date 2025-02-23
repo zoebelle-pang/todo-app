@@ -1,9 +1,9 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const path = require("path")
 const bodyParser = require("body-parser");
 const moment = require("moment");
 const connectMongodb = require("./init/mongodb")
+const Todo = require("./models/Todo");
 
 const PORT = 8000;
 
@@ -13,14 +13,7 @@ const app = express();
 //mongodb connection
 connectMongodb();
 
-const todoSchema = mongoose.Schema({
-    title: {type: String, required: true }, 
-    desc: String,
-}, 
-{timestamps: true}
-);
 
-const Todo = mongoose.model("todo", todoSchema);
 // View engine
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname,"public")));
